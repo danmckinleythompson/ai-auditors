@@ -14,6 +14,7 @@ scripts = [
     "make_rjudge_auditor_tpr5.py",
     "make_rjudge_auditor_panels_fpr.py",
     "run_auditor_metrics.py",
+    "check_draft_operating_points.py",
 ]
 for script in scripts:
     print(f"Running {script}", flush=True)
@@ -22,3 +23,4 @@ for script in scripts:
 # Optional record-level analyses require local, untracked research CSVs.
 # python code/run_malt_ensemble_analysis.py
 # python code/run_rjudge_analysis.py
+# python code/check_malt_ensemble_bootstrap.py  # After run_malt_ensemble_analysis.py

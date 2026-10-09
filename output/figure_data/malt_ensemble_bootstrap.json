@@ -1,0 +1,10 @@
+{
+  "input_file": "modified_data/malt_ensemble_analysis_run_scores.csv",
+  "input_sha256": "0700d191ff7f095a2e51eac3d99cc1fccb7362d00a7f5d4d07c50817d47ef732",
+  "bootstrap_replicates": 2000,
+  "seed": 20261009,
+  "ci": "95% percentile, paired log bootstrap within behavior x human-label strata",
+  "conditioning": "Complete-case samples, selected baselines, and saved percentile transformations are fixed. Resampling uncertainty only; no deployment-generalization or model-response randomness.",
+  "paired_across_behaviors": false,
+  "notes": "Intervals are for separate behaviors, not for combined or simultaneous conclusions; no task-cluster correction or multiple-comparison adjustment."
+}

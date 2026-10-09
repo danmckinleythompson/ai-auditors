@@ -26,13 +26,15 @@ The [collection settings](rjudge_collection_settings.md) give exact requested mo
 
 AUROC measures ranking of positive and negative examples. We compute TPR at fixed FPR with linear interpolation on the empirical ROC. For FPR at fixed TPR, use the first segment reaching the target, preserving the lowest FPR at a horizontal plateau. Interpolated operating points can require random selection within a group of equal scores and need not correspond to an available single cutoff.
 
-The reported cutoffs and ranks use the evaluation samples themselves. We do not claim held-out calibration, deployment prevalence, confidence intervals, or a causal effect of model age. API price is a cost measure, not an identified measure of model age or capability.
+The reported cutoffs and ranks use the evaluation samples themselves. The figures do not show confidence intervals or establish held-out calibration, deployment prevalence, or a causal effect of model age. API price is a cost measure, not an identified measure of model age or capability. The [draft audit](draft_checks.md) documents single-cutoff alternatives and a separate exploratory uncertainty check for ensembles.
 
 The cost figure reprices observed token totals at standard OpenRouter endpoint rates retrieved October 2, 2026. It includes recorded cache reads/writes and reasoning tokens already counted in completion tokens. None of the selected requests entered a long-context pricing tier. It excludes retries, batch/Flex discounts, and credit-purchase fees. Per-1,000-log costs cover all chunks for one misbehavior rubric, using each model's corresponding complete-log sample. The frontier is a step function over the five tested models; it does not estimate model mixtures.
 
 ## Ensemble evidence
 
 The completed local experiments take the chunk maximum separately for Astra, Gemini, and Opus, then average either raw scores or within-model/behavior percentiles (average rank divided by sample size). Both require valid complete logs for all three models. Matched individual-model results use the same common sample. The package retains these aggregate results and optional recomputation code. Saved judge preparation and cost estimates are not completed judge experiments.
+
+The October 9 claim audit adds 2,000 paired log bootstrap replicates within behavior and human-label strata, with seed 20261009. These conditional 95% percentile intervals preserve each log's scores across approaches and hold the saved percentile transformations fixed. They do not account for task clustering, baseline selection, repeated model responses, or deployment shift; they are exploratory sensitivity checks rather than simultaneous or deployment guarantees.
 
 ## Sources
 

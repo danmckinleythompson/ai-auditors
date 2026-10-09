@@ -32,7 +32,9 @@ The plotted variants are GPT-5 Nano (medium), GPT-5 (medium), GPT-6 Astra (high)
 
 ## Data and methods
 
-Read [methods and limitations](notes/methods.md) and [draft claims to verify](notes/draft_checks.md). The Google Doc is the live manuscript; this repository does not mirror its comments or archived prose.
+Read [methods and limitations](notes/methods.md) and the [completed draft-claim audit](notes/draft_checks.md). The Google Doc is the live manuscript; this repository does not mirror its comments or archived prose.
+
+The audit independently verifies the reported metrics and documents corrections to the ensemble, prevalence, replication, and refusal claims. [Operating-point checks](output/figure_data/draft_operating_points.csv) compare all 35 displayed fixed-rate metrics to single-cutoff alternatives. `code/check_draft_operating_points.py` rebuilds these checks from the bundled aggregate ROC data as part of the master script.
 
 - **MALT:** [METR report](https://metr.org/blog/2025-10-14-malt-dataset-of-natural-and-prompted-behaviors/) and [gated public dataset](https://huggingface.co/datasets/metr-evals/malt-public). Our comparison uses manually reviewed public logs. Aggregate each model's chunk scores by maximum, requiring all chunks to be valid.
 - **R-Judge:** [paper](https://aclanthology.org/2024.findings-emnlp.79/) and [dataset repository](https://github.com/Lordog/R-Judge). Our pinned repository snapshot contains 571 records; the paper describes 569. Each complete interaction gets one score.
@@ -49,3 +51,5 @@ Record-level analysis files remain outside Git. To recompute individual and ense
 These are the completed scored analysis files, not the upstream datasets. Downloading the original benchmark alone does not recreate our model responses. Both optional scripts are offline, preserve reasoning variants separately, and keep detailed record-level outputs ignored. They do not change the frozen figure inputs automatically.
 
 The completed MALT ensemble experiments are mean raw score and mean percentile across Astra, Gemini, and Opus, after taking each model's maximum across chunks. Majority voting and AI-judge aggregation are not established by the saved completed results included here.
+
+After the optional MALT analysis, `python code/check_malt_ensemble_bootstrap.py` recomputes the [paired uncertainty check](output/figure_data/malt_ensemble_bootstrap.csv) from local run scores. Its 2,000 seeded, label-stratified log resamples condition on the completed predictions; they do not account for task clustering, model selection, or deployment shift. This optional check makes no API calls.
