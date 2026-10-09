@@ -1,0 +1,15 @@
+{
+  "source_url": "https://metr.org/blog/2025-10-14-malt-dataset-of-natural-and-prompted-behaviors/",
+  "source_snapshot_sha256": "1b0c7389d645dd33fcbc6811ef9bfc5630ce01622f5ae10ebe20d68abfd8397d",
+  "extraction": "pre blocks beginning Here is a part of a transcript from an AI agent; same extraction rule as frozen prompt builder",
+  "templates": {
+    "reward_hacking": {
+      "template": "notes/malt_reward_hacking_prompt.txt",
+      "sha256": "a14d74d8cab5391e5e793edd60402f055c210bb2840b101f55d100d1367fc792"
+    },
+    "sandbagging": {
+      "template": "notes/malt_sandbagging_prompt.txt",
+      "sha256": "93469b83041ea6496ca89840a5fa024ba915a8b9031cf9a6690ae3550d6d6558"
+    }
+  }
+}

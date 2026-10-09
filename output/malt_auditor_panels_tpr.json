@@ -1,0 +1,18 @@
+{
+  "created_utc": "2026-10-09T22:03:58.588564+00:00",
+  "source_sha256": {
+    "output/figure_data/malt_auditor_roc_points.csv": "161e64bbe4fd28342d444c669f048c15c3f21d9509c95651497d20e7fc9ffad7",
+    "output/figure_data/malt_auditor_roc_metrics.csv": "d94ab36562a1d7156d12b9a8db0703be535e304ab929ca03e6b45e72a67b71ea"
+  },
+  "metric": "Linearly interpolated TPR at 5% FPR; larger is better.",
+  "panel_order": [
+    "reward_hacking",
+    "sandbagging"
+  ],
+  "row_order": "Descending TPR separately in each panel.",
+  "output_sha256": {
+    "output/figure_data/malt_auditor_panels_tpr.csv": "e65aec7ff06b4dba12b31aabef10fadcba8cb3d80b70b8770aacb38e72f1fec0",
+    "output/malt_auditor_panels_tpr.pdf": "7329194f96284d740d0c798452ec9acfdd52ed8b945e4c42da26a8aad4968050",
+    "output/malt_auditor_panels_tpr.png": "e6e828fe9639957f054951fd0cdc56dedbe4a412e864d6375a2af1e7a53a2e99"
+  }
+}

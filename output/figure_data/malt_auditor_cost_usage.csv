@@ -1,0 +1,11 @@
+sample,model_variant,misbehavior_type,n_logs,n_successful_chunks,n_positive_logs,n_negative_logs,prompt_tokens,completion_tokens,reasoning_tokens,cached_tokens,cache_write_tokens
+own_complete_logs,gemini_high,sandbagging,1767,3767,1073,694,122582281,3091273,2763149,345046,0
+own_complete_logs,gpt5_medium,sandbagging,1767,3767,1073,694,105528409,1683451,1141504,1801600,0
+own_complete_logs,gpt5_nano_medium,sandbagging,1767,3767,1073,694,105528409,2774812,2353472,1720704,0
+own_complete_logs,gpt6_astra_high,sandbagging,1757,3747,1063,694,104951495,968709,460659,1774786,2729725
+own_complete_logs,opus48_high,sandbagging,1765,3761,1071,694,156014555,2280711,1021658,0,0
+own_complete_logs,gemini_high,reward_hacking,741,2064,47,694,72091966,1589340,1436097,184171,0
+own_complete_logs,gpt5_medium,reward_hacking,741,2064,47,694,62123307,937201,659840,5540352,0
+own_complete_logs,gpt5_nano_medium,reward_hacking,741,2064,47,694,62123307,1598543,1371584,5888000,0
+own_complete_logs,gpt6_astra_high,reward_hacking,741,2064,47,694,62123307,459708,263793,1492520,1661419
+own_complete_logs,opus48_high,reward_hacking,741,2064,47,694,91062688,987907,479526,0,0

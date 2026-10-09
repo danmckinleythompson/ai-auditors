@@ -1,0 +1,49 @@
+{
+  "source_project": "AIMonitor",
+  "canonical_input": "modified_data/malt_chunk_analysis.csv",
+  "canonical_input_sha256": "c1be2f25b480e064a42d8d31b17e129f450b8192ed12ec478cad511cacc16c1f",
+  "original_source_sha256": {
+    "output/malt_auditor_roc_points.csv": "161e64bbe4fd28342d444c669f048c15c3f21d9509c95651497d20e7fc9ffad7",
+    "output/malt_auditor_roc_metrics.csv": "d94ab36562a1d7156d12b9a8db0703be535e304ab929ca03e6b45e72a67b71ea",
+    "output/malt_auditor_roc_manifest.json": "f3765ac2fec4294a077a6c8d0b1d4cc5db1746b180714228dcb5b81775d6924c",
+    "modified_data/malt_auditor_cost_usage.csv": "d51c13c61b40f7e472e6206e622ba2b76f0b7ba27dfcfb5c687204a3be066f99",
+    "output/malt_auditor_cost_auroc.json": "6025f147c59bc971e88d5e71474c04eac9c992c43111fd8a2e59e4c3ada652de",
+    "modified_data/malt_ensemble_analysis_metrics.csv": "d7f7096f10a39a033d20889dd7b9c5e9f8ef6a347656a6081b72a33aa5633fe7"
+  },
+  "aggregation": "Complete log scores maximize over effective chunks; ROC points and counts are aggregate outputs. Cost usage sums selected successful tokens only over each model's own complete logs.",
+  "cost_reconstruction": "Aggregate tokens exactly reproduce original costs because no selected request enters a long-context pricing tier. Rates are frozen at October 2, 2026.",
+  "original_script_sha256": {
+    "code/make_malt_auditor_panels_tpr.py": "5dee000e8535bd3f5ff55d764eca8874614a7fbfc55f8ad018f70fc23e8ad84d",
+    "code/make_malt_auditor_panels_fpr.py": "496492b167e075cc4b08620b8a2b6dd92695e45cb774275b55957ad002c8ea71",
+    "code/make_malt_auditor_cost_auroc.py": "25554b4ef8107fba728f47524a53d1b1c1323a0926dbe22b7312e5c217f37474",
+    "code/run_malt_ensemble_analysis.py": "e34619a77f9cef1ac2abdec3ca6321262b7dfa37ad2b672eca7aca77d3c98f48"
+  },
+  "output_sha256": {
+    "output/figure_data/malt_auditor_cost_pricing.json": "f4663ae944f774267534b5bfbb269b363f8f5767b7e0d9197f2d3867c43f9563",
+    "output/figure_data/malt_auditor_cost_usage.csv": "6aa23131b734b647a6a56024211a466f4cf73a0d60788f0332a2c9afa9770c81",
+    "output/figure_data/malt_auditor_roc_metrics.csv": "d94ab36562a1d7156d12b9a8db0703be535e304ab929ca03e6b45e72a67b71ea",
+    "output/figure_data/malt_auditor_roc_points.csv": "161e64bbe4fd28342d444c669f048c15c3f21d9509c95651497d20e7fc9ffad7",
+    "output/figure_data/malt_ensemble_reference_metrics.csv": "d7f7096f10a39a033d20889dd7b9c5e9f8ef6a347656a6081b72a33aa5633fe7"
+  },
+  "ensemble_methods": {
+    "members": [
+      "gpt6_astra_high",
+      "gemini_high",
+      "opus48_high"
+    ],
+    "aggregation": "Maximum across chunks within model first, then mean score or mean percentile across the three complete models. Percentiles use average tied ranks / N within each model-behavior population before the complete-model intersection.",
+    "evaluation": "Descriptive evaluation-sample results; no held-out calibration.",
+    "implemented_approaches": [
+      "ensemble_mean_score",
+      "ensemble_mean_percentile"
+    ]
+  },
+  "draft_claim_scope": {
+    "supported": "Two averaging approaches are computed in the saved analysis.",
+    "unsupported_by_saved_results": [
+      "majority voting",
+      "AI-judge aggregation experiments"
+    ],
+    "judge_evidence": "notes/malt_judge_costs.md:1 says Draft preparation only; no paid judge calls. code/master.py:294-298 documents preparation and costing only. R-Judge is a separate benchmark, not this proposed MALT judge ensemble."
+  }
+}

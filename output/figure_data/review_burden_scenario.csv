@@ -1,0 +1,2 @@
+n_logs,assumed_prevalence,assumed_tpr,assumed_fpr,expected_true_positives,expected_false_positives,expected_false_negatives,expected_total_flagged,expected_precision
+100000,0.025,0.8,0.03,2000.0,2925.0,499.9999999999999,4925.0,0.40609137055837563

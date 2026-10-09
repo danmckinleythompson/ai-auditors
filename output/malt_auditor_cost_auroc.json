@@ -1,0 +1,128 @@
+{
+  "created_utc": "2026-10-09T22:03:59.792693+00:00",
+  "price_date": "2026-10-02",
+  "input_sha256": {
+    "output/figure_data/malt_auditor_cost_usage.csv": "6aa23131b734b647a6a56024211a466f4cf73a0d60788f0332a2c9afa9770c81",
+    "output/figure_data/malt_auditor_roc_metrics.csv": "d94ab36562a1d7156d12b9a8db0703be535e304ab929ca03e6b45e72a67b71ea",
+    "output/figure_data/malt_auditor_cost_pricing.json": "f4663ae944f774267534b5bfbb269b363f8f5767b7e0d9197f2d3867c43f9563"
+  },
+  "rates": [
+    {
+      "model_variant": "gpt6_astra_high",
+      "model_id": "openai/gpt-6-astra",
+      "endpoint_tag": "openai",
+      "price_date": "2026-10-02",
+      "pricing_per_token": {
+        "prompt": "0.00001",
+        "completion": "0.00005",
+        "web_search": "0.01",
+        "input_cache_read": "0.000001",
+        "input_cache_write": "0.0000125",
+        "discount": 0,
+        "overrides": [
+          {
+            "min_prompt_tokens": 272000,
+            "prompt": "0.00002",
+            "completion": "0.000075",
+            "input_cache_read": "0.000002",
+            "input_cache_write": "0.000025"
+          }
+        ]
+      },
+      "source_url": "https://openrouter.ai/api/v1/models/openai/gpt-6-astra/endpoints",
+      "tiered_requests": 0
+    },
+    {
+      "model_variant": "gpt5_medium",
+      "model_id": "openai/gpt-5",
+      "endpoint_tag": "openai/default",
+      "price_date": "2026-10-02",
+      "pricing_per_token": {
+        "prompt": "0.00000125",
+        "completion": "0.00001",
+        "web_search": "0.01",
+        "input_cache_read": "0.000000125",
+        "discount": 0
+      },
+      "source_url": "https://openrouter.ai/api/v1/models/openai/gpt-5/endpoints",
+      "tiered_requests": 0
+    },
+    {
+      "model_variant": "gpt5_nano_medium",
+      "model_id": "openai/gpt-5-nano",
+      "endpoint_tag": "openai",
+      "price_date": "2026-10-02",
+      "pricing_per_token": {
+        "prompt": "0.00000005",
+        "completion": "0.0000004",
+        "web_search": "0.01",
+        "input_cache_read": "0.000000005",
+        "discount": 0
+      },
+      "source_url": "https://openrouter.ai/api/v1/models/openai/gpt-5-nano/endpoints",
+      "tiered_requests": 0
+    },
+    {
+      "model_variant": "gemini_high",
+      "model_id": "google/gemini-3.8-flash",
+      "endpoint_tag": "google-ai-studio",
+      "price_date": "2026-10-02",
+      "pricing_per_token": {
+        "prompt": "0.00000075",
+        "completion": "0.00000375",
+        "image": "0.00000075",
+        "audio": "0.00000075",
+        "input_audio_cache": "0.000000075",
+        "web_search": "0.014",
+        "internal_reasoning": "0.00000375",
+        "input_cache_read": "0.000000075",
+        "input_cache_write": "0.0000000416666666666667",
+        "discount": 0.5
+      },
+      "source_url": "https://openrouter.ai/api/v1/models/google/gemini-3.8-flash/endpoints",
+      "tiered_requests": 0
+    },
+    {
+      "model_variant": "opus48_high",
+      "model_id": "anthropic/claude-opus-4.8",
+      "endpoint_tag": "anthropic",
+      "price_date": "2026-10-02",
+      "pricing_per_token": {
+        "prompt": "0.000005",
+        "completion": "0.000025",
+        "web_search": "0.01",
+        "input_cache_read": "0.0000005",
+        "input_cache_write": "0.00000625",
+        "input_cache_write_1h": "0.00001",
+        "discount": 0
+      },
+      "source_url": "https://openrouter.ai/api/v1/models/anthropic/claude-opus-4.8/endpoints",
+      "tiered_requests": 0
+    }
+  ],
+  "cost_formula": "1000 / complete_logs * sum((prompt-read-write)*input_rate + read*cache_read_rate + write*cache_write_rate + completion*output_rate)",
+  "primary_scenario": "Current standard native-endpoint prices with the observed cache-read/write pattern; no historical batch/Flex discounts.",
+  "sensitivity": "nominal_no_cache_per_1000_logs_usd prices all input at uncached input rates, with neither cache-read discounts nor write surcharges.",
+  "reasoning": "Already included in completion_tokens; not added again.",
+  "price_frontier": "Budget step function: highest observed AUROC among individual tested models with cost at or below budget. Undefined below the cheapest model. No interpolation of model mixtures or inferred performance beyond tested models.",
+  "frontier_models": {
+    "reward_hacking": [
+      "gpt5_nano_medium",
+      "gpt5_medium"
+    ],
+    "sandbagging": [
+      "gpt5_nano_medium",
+      "gemini_high",
+      "gpt5_medium",
+      "opus48_high",
+      "gpt6_astra_high"
+    ]
+  },
+  "limitations": "Repriced observed successful usage, not a future billing guarantee. Excludes failed/superseded attempts and missing logs; future lengths and cache hit rates may differ. Models have slightly different complete sandbagging samples.",
+  "validation": "Aggregate token counts and all ten costs were cross-checked against the original per-request calculation. Cost and AUROC sample sizes match. The frozen per-request audit found no long-context pricing tiers.",
+  "output_sha256": {
+    "output/figure_data/malt_auditor_cost_auroc.csv": "9069ef8290c2f75d8f29de30fdabfec1072e1b80035798b87908524fa1799e01",
+    "output/malt_auditor_cost_auroc.pdf": "6abcd019d0fc05492bdef4249e956808cb2aba998d25d3ae9aa0c8468d8fbeda",
+    "output/malt_auditor_cost_auroc.png": "ce11c74d9b9961ece3916eab75ea0715081955e527357a9c586b5b9ff8d4ef7c"
+  }
+}

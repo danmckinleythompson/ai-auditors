@@ -1,0 +1,26 @@
+{
+  "created_utc": "2026-10-09T22:04:00.862939+00:00",
+  "source_sha256": {
+    "output/figure_data/rjudge_analysis_roc.csv": "810649e719df3fa80486bf9afa38ea5c127d0107bd2ff2176886886e0c3c107b",
+    "output/figure_data/rjudge_auditor_panels_fpr_expected.csv": "81376598e45cc27814915e634b7ca3232153f669d862a345afa6036613ca6f94"
+  },
+  "metric": "Lowest FPR reaching the target TPR on the linearly interpolated empirical ROC; smaller is better.",
+  "sample": "individual_complete: all valid scores for each model separately; no imputation of missing scores.",
+  "panel_order": [
+    0.95,
+    0.99
+  ],
+  "included_models": [
+    "astra_high",
+    "gemini_high",
+    "gpt5_medium",
+    "gpt5_nano_medium",
+    "opus48_high"
+  ],
+  "row_order": "Ascending FPR separately in each panel.",
+  "output_sha256": {
+    "output/figure_data/rjudge_auditor_panels_fpr.csv": "0e6283a294d7a0d9a56ccd5586e7a403539861c5994b7a6ebdc99209f848532f",
+    "output/rjudge_auditor_panels_fpr.png": "4adbb4c81b49d90b76e4ad502e4887243f554058402bb6b961c6e9376d719d10",
+    "output/rjudge_auditor_panels_fpr.pdf": "0eb083fb482d0423718dff41b280b486f7bbf7223c8c27a9d6784efb8cbccb09"
+  }
+}

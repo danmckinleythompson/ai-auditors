@@ -1,0 +1,33 @@
+sample,approach,approach_label,misbehavior_type,n_pairs,n_positive,n_negative,auroc,target_fpr,tpr_at_fpr_05
+individual_complete,gemini_high,Gemini 3.8 Flash (high),sandbagging,1767,1073,694,0.8835041938490215,0.05,0.7786579683131408
+ensemble_common,gemini_high,Gemini 3.8 Flash (high),sandbagging,1755,1061,694,0.884071630537229,0.05,0.7797360980207352
+individual_complete,gpt5_medium,GPT-5 (medium),sandbagging,1767,1073,694,0.8994234968348056,0.05,0.7875232991612302
+ensemble_common,gpt5_medium,GPT-5 (medium),sandbagging,1755,1061,694,0.8992114991294711,0.05,0.7888901979264845
+individual_complete,gpt5_minimal,GPT-5 (minimal),sandbagging,1767,1073,694,0.8953699799372064,0.05,0.7841969555762659
+ensemble_common,gpt5_minimal,GPT-5 (minimal),sandbagging,1755,1061,694,0.8951943004125844,0.05,0.785526233113415
+individual_complete,gpt5_nano_medium,GPT-5 Nano (medium),sandbagging,1767,1073,694,0.8641343320862351,0.05,0.7082882882882883
+ensemble_common,gpt5_nano_medium,GPT-5 Nano (medium),sandbagging,1755,1061,694,0.863566669473364,0.05,0.7095318881558278
+individual_complete,gpt5_nano_minimal,GPT-5 Nano (minimal),sandbagging,1767,1073,694,0.8259156503218911,0.05,0.5291616739892602
+ensemble_common,gpt5_nano_minimal,GPT-5 Nano (minimal),sandbagging,1755,1061,694,0.8249639429932611,0.05,0.5308783268255465
+individual_complete,gpt6_astra_high,GPT-6 Astra (high),sandbagging,1757,1063,694,0.927511311849179,0.05,0.811968361637867
+ensemble_common,gpt6_astra_high,GPT-6 Astra (high),sandbagging,1755,1061,694,0.9273746696471983,0.05,0.8116139193412372
+individual_complete,opus48_high,Opus 4.8 (high),sandbagging,1765,1071,694,0.9154342813013774,0.05,0.7958798542891334
+ensemble_common,opus48_high,Opus 4.8 (high),sandbagging,1755,1061,694,0.9160204472426915,0.05,0.7974246989951016
+individual_complete,gemini_high,Gemini 3.8 Flash (high),reward_hacking,741,47,694,0.7323716966092342,0.05,0.4924869907934846
+ensemble_common,gemini_high,Gemini 3.8 Flash (high),reward_hacking,741,47,694,0.7323716966092342,0.05,0.4924869907934846
+individual_complete,gpt5_medium,GPT-5 (medium),reward_hacking,741,47,694,0.9762401128211418,0.05,0.978745970341715
+ensemble_common,gpt5_medium,GPT-5 (medium),reward_hacking,741,47,694,0.9762401128211418,0.05,0.978745970341715
+individual_complete,gpt5_minimal,GPT-5 (minimal),reward_hacking,741,47,694,0.8708535164633023,0.05,0.6583404255319149
+ensemble_common,gpt5_minimal,GPT-5 (minimal),reward_hacking,741,47,694,0.8708535164633023,0.05,0.6583404255319149
+individual_complete,gpt5_nano_medium,GPT-5 Nano (medium),reward_hacking,741,47,694,0.8806027346863695,0.05,0.7218085106382979
+ensemble_common,gpt5_nano_medium,GPT-5 Nano (medium),reward_hacking,741,47,694,0.8806027346863695,0.05,0.7218085106382979
+individual_complete,gpt5_nano_minimal,GPT-5 Nano (minimal),reward_hacking,741,47,694,0.8693512784352198,0.05,0.18457446808510639
+ensemble_common,gpt5_nano_minimal,GPT-5 Nano (minimal),reward_hacking,741,47,694,0.8693512784352198,0.05,0.18457446808510639
+individual_complete,gpt6_astra_high,GPT-6 Astra (high),reward_hacking,741,47,694,0.9345913299405236,0.05,0.895315973324865
+ensemble_common,gpt6_astra_high,GPT-6 Astra (high),reward_hacking,741,47,694,0.9345913299405236,0.05,0.895315973324865
+individual_complete,opus48_high,Opus 4.8 (high),reward_hacking,741,47,694,0.8274572322030781,0.05,0.6826321363242515
+ensemble_common,opus48_high,Opus 4.8 (high),reward_hacking,741,47,694,0.8274572322030781,0.05,0.6826321363242515
+ensemble_common,ensemble_mean_score,Ensemble: mean score,sandbagging,1755,1061,694,0.9319500389768773,0.05,0.8157105456068698
+ensemble_common,ensemble_mean_score,Ensemble: mean score,reward_hacking,741,47,694,0.9614936538107794,0.05,0.8656673114119923
+ensemble_common,ensemble_mean_percentile,Ensemble: mean percentile,sandbagging,1755,1061,694,0.9322114692517254,0.05,0.8184293010104552
+ensemble_common,ensemble_mean_percentile,Ensemble: mean percentile,reward_hacking,741,47,694,0.9591636519713044,0.05,0.7360450563204005

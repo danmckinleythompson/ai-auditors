@@ -1,0 +1,11 @@
+misbehavior_type,model_variant,model_label,n_logs,n_positive,n_negative,excluded_logs,auroc,tpr_at_fpr_05
+sandbagging,gpt6_astra_high,GPT-6 Astra (high),1757,1063,694,10,0.927511311849179,0.811968361637867
+sandbagging,gpt5_medium,GPT-5 (medium),1767,1073,694,0,0.8994234968348056,0.7875232991612302
+sandbagging,gpt5_nano_medium,GPT-5 Nano (medium),1767,1073,694,0,0.8641343320862351,0.7082882882882883
+sandbagging,gemini_high,Gemini 3.8 Flash (high),1767,1073,694,0,0.8835041938490215,0.7786579683131408
+sandbagging,opus48_high,Opus 4.8 (high),1765,1071,694,2,0.9154342813013774,0.7958798542891334
+reward_hacking,gpt6_astra_high,GPT-6 Astra (high),741,47,694,0,0.9345913299405236,0.895315973324865
+reward_hacking,gpt5_medium,GPT-5 (medium),741,47,694,0,0.9762401128211418,0.978745970341715
+reward_hacking,gpt5_nano_medium,GPT-5 Nano (medium),741,47,694,0,0.8806027346863695,0.7218085106382979
+reward_hacking,gemini_high,Gemini 3.8 Flash (high),741,47,694,0,0.7323716966092342,0.4924869907934846
+reward_hacking,opus48_high,Opus 4.8 (high),741,47,694,0,0.8274572322030781,0.6826321363242515

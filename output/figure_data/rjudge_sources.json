@@ -1,0 +1,34 @@
+{
+  "source_project": "AIMonitor",
+  "sample": "individual_complete",
+  "included_models": [
+    "astra_high",
+    "gemini_high",
+    "gpt5_medium",
+    "gpt5_nano_medium",
+    "opus48_high"
+  ],
+  "source_sha256": {
+    "modified_data/rjudge_analysis_roc.csv": "9efdceb259643d0f22775f38d9d96f80313eb41f7eaf4174d1c9bccae7d662e5",
+    "modified_data/rjudge_analysis_metrics.csv": "8e740c62f298d7c3608edc0c6268fc4abb4663b724d8e0f25131b9c0e1b8acae",
+    "output/rjudge_auditor_tpr.csv": "46e75f6e0d61d254e4d6ad36750e4c8f53c1bd67720db62e9d0bd87b9fcdc3cd",
+    "output/rjudge_auditor_panels_fpr.csv": "81376598e45cc27814915e634b7ca3232153f669d862a345afa6036613ca6f94"
+  },
+  "frozen_sha256": {
+    "output/figure_data/rjudge_analysis_roc.csv": "810649e719df3fa80486bf9afa38ea5c127d0107bd2ff2176886886e0c3c107b",
+    "output/figure_data/rjudge_analysis_metrics.csv": "6ff2447daede80f7f4218511e9f79ea6383d88483174d2354bacc82f4ae592f0",
+    "output/figure_data/rjudge_auditor_tpr5_expected.csv": "be6c08ab94403e8bff0f6a0c73e33b96932cd99409c4c82e61f557a06ec5b6a5",
+    "output/figure_data/rjudge_auditor_panels_fpr_expected.csv": "81376598e45cc27814915e634b7ca3232153f669d862a345afa6036613ca6f94"
+  },
+  "row_counts": {
+    "output/figure_data/rjudge_analysis_roc.csv": 55,
+    "output/figure_data/rjudge_analysis_metrics.csv": 5,
+    "output/figure_data/rjudge_auditor_tpr5_expected.csv": 5,
+    "output/figure_data/rjudge_auditor_panels_fpr_expected.csv": 10
+  },
+  "original_png_sha256": {
+    "output/rjudge_auditor_tpr5.png": "0d2e365b509e37db0e144f78b821d327d4fc8681343d80a6abd3d1466df1bc3b",
+    "output/rjudge_auditor_panels_fpr.png": "4adbb4c81b49d90b76e4ad502e4887243f554058402bb6b961c6e9376d719d10"
+  },
+  "notes": "Frozen aggregate empirical ROC vertices and metrics for five displayed variants only. Expected values are the previously plotted aggregates. No record-level data, transcript, prompt instance, or response is included."
+}

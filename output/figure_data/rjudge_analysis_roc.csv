@@ -1,0 +1,56 @@
+sample,model_variant,model_label,point,false_positive_rate,true_positive_rate,threshold,n_positive,n_negative
+individual_complete,gpt5_nano_medium,GPT-5 Nano (medium),0,0.0,0.0,inf,301,270
+individual_complete,gpt5_nano_medium,GPT-5 Nano (medium),1,0.0,0.046511627906976744,10.0,301,270
+individual_complete,gpt5_nano_medium,GPT-5 Nano (medium),2,0.014814814814814815,0.4850498338870432,9.0,301,270
+individual_complete,gpt5_nano_medium,GPT-5 Nano (medium),3,0.1111111111111111,0.7541528239202658,8.0,301,270
+individual_complete,gpt5_nano_medium,GPT-5 Nano (medium),4,0.22592592592592592,0.8504983388704319,7.0,301,270
+individual_complete,gpt5_nano_medium,GPT-5 Nano (medium),5,0.3,0.9036544850498339,6.0,301,270
+individual_complete,gpt5_nano_medium,GPT-5 Nano (medium),6,0.3296296296296296,0.9069767441860465,5.0,301,270
+individual_complete,gpt5_nano_medium,GPT-5 Nano (medium),7,0.36666666666666664,0.920265780730897,4.0,301,270
+individual_complete,gpt5_nano_medium,GPT-5 Nano (medium),8,0.3925925925925926,0.9269102990033222,3.0,301,270
+individual_complete,gpt5_nano_medium,GPT-5 Nano (medium),9,0.5962962962962963,0.9568106312292359,2.0,301,270
+individual_complete,gpt5_nano_medium,GPT-5 Nano (medium),10,0.7481481481481481,0.9867109634551495,1.0,301,270
+individual_complete,gpt5_nano_medium,GPT-5 Nano (medium),11,1.0,1.0,0.0,301,270
+individual_complete,gpt5_medium,GPT-5 (medium),0,0.0,0.0,inf,301,270
+individual_complete,gpt5_medium,GPT-5 (medium),1,0.003703703703703704,0.6777408637873754,10.0,301,270
+individual_complete,gpt5_medium,GPT-5 (medium),2,0.011111111111111112,0.8239202657807309,9.0,301,270
+individual_complete,gpt5_medium,GPT-5 (medium),3,0.022222222222222223,0.8970099667774086,8.0,301,270
+individual_complete,gpt5_medium,GPT-5 (medium),4,0.05555555555555555,0.9368770764119602,7.0,301,270
+individual_complete,gpt5_medium,GPT-5 (medium),5,0.1037037037037037,0.9634551495016611,6.0,301,270
+individual_complete,gpt5_medium,GPT-5 (medium),6,0.1111111111111111,0.9667774086378738,5.0,301,270
+individual_complete,gpt5_medium,GPT-5 (medium),7,0.14444444444444443,0.9767441860465116,4.0,301,270
+individual_complete,gpt5_medium,GPT-5 (medium),8,0.1962962962962963,0.9867109634551495,3.0,301,270
+individual_complete,gpt5_medium,GPT-5 (medium),9,0.32222222222222224,0.9933554817275747,2.0,301,270
+individual_complete,gpt5_medium,GPT-5 (medium),10,0.5740740740740741,1.0,1.0,301,270
+individual_complete,gpt5_medium,GPT-5 (medium),11,1.0,1.0,0.0,301,270
+individual_complete,astra_high,GPT-6 Astra (high),0,0.0,0.0,inf,301,270
+individual_complete,astra_high,GPT-6 Astra (high),1,0.018518518518518517,0.8704318936877077,10.0,301,270
+individual_complete,astra_high,GPT-6 Astra (high),2,0.05925925925925926,0.9169435215946844,9.0,301,270
+individual_complete,astra_high,GPT-6 Astra (high),3,0.08888888888888889,0.9401993355481728,8.0,301,270
+individual_complete,astra_high,GPT-6 Astra (high),4,0.09259259259259259,0.9534883720930233,7.0,301,270
+individual_complete,astra_high,GPT-6 Astra (high),5,0.09259259259259259,0.9601328903654485,6.0,301,270
+individual_complete,astra_high,GPT-6 Astra (high),6,0.0962962962962963,0.9601328903654485,3.0,301,270
+individual_complete,astra_high,GPT-6 Astra (high),7,0.1111111111111111,0.973421926910299,2.0,301,270
+individual_complete,astra_high,GPT-6 Astra (high),8,0.15925925925925927,0.9933554817275747,1.0,301,270
+individual_complete,astra_high,GPT-6 Astra (high),9,1.0,1.0,0.0,301,270
+individual_complete,gemini_high,Gemini 3.8 Flash (high),0,0.0,0.0,inf,300,270
+individual_complete,gemini_high,Gemini 3.8 Flash (high),1,0.0,0.78,10.0,300,270
+individual_complete,gemini_high,Gemini 3.8 Flash (high),2,0.003703703703703704,0.8533333333333334,9.0,300,270
+individual_complete,gemini_high,Gemini 3.8 Flash (high),3,0.022222222222222223,0.9266666666666666,8.0,300,270
+individual_complete,gemini_high,Gemini 3.8 Flash (high),4,0.022222222222222223,0.9433333333333334,7.0,300,270
+individual_complete,gemini_high,Gemini 3.8 Flash (high),5,0.025925925925925925,0.9433333333333334,6.0,300,270
+individual_complete,gemini_high,Gemini 3.8 Flash (high),6,0.02962962962962963,0.9433333333333334,2.0,300,270
+individual_complete,gemini_high,Gemini 3.8 Flash (high),7,0.037037037037037035,0.95,1.0,300,270
+individual_complete,gemini_high,Gemini 3.8 Flash (high),8,1.0,1.0,0.0,300,270
+individual_complete,opus48_high,Opus 4.8 (high),0,0.0,0.0,inf,300,270
+individual_complete,opus48_high,Opus 4.8 (high),1,0.0,0.5766666666666667,10.0,300,270
+individual_complete,opus48_high,Opus 4.8 (high),2,0.0,0.73,9.0,300,270
+individual_complete,opus48_high,Opus 4.8 (high),3,0.0,0.7866666666666666,8.0,300,270
+individual_complete,opus48_high,Opus 4.8 (high),4,0.003703703703703704,0.8266666666666667,7.0,300,270
+individual_complete,opus48_high,Opus 4.8 (high),5,0.007407407407407408,0.89,6.0,300,270
+individual_complete,opus48_high,Opus 4.8 (high),6,0.014814814814814815,0.9033333333333333,5.0,300,270
+individual_complete,opus48_high,Opus 4.8 (high),7,0.018518518518518517,0.92,4.0,300,270
+individual_complete,opus48_high,Opus 4.8 (high),8,0.03333333333333333,0.9433333333333334,3.0,300,270
+individual_complete,opus48_high,Opus 4.8 (high),9,0.05185185185185185,0.96,2.0,300,270
+individual_complete,opus48_high,Opus 4.8 (high),10,0.725925925925926,0.9966666666666667,1.0,300,270
+individual_complete,opus48_high,Opus 4.8 (high),11,1.0,1.0,0.0,300,270

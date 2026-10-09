@@ -1,0 +1,32 @@
+# Record-level data and collection artifacts stay in the private research folder.
+original_data/
+modified_data/
+tmp/
+.env
+.env.*
+.secrets/
+.aws/
+.codex/
+.agents/
+.claude/
+.venv/
+__pycache__/
+*.pyc
+*.log
+*.jsonl
+*.parquet
+*.dta
+*.sqlite*
+*.pem
+*.key
+**/archive/
+**/_archive/
+.DS_Store
+
+# CSVs are limited to explicitly prepared aggregate figure exports.
+*.csv
+!output/figure_data/*.csv
+
+# Full optional recomputation writes local notes, separate from shipped methods.
+notes/rjudge_analysis.md
+notes/malt_ensemble_analysis.md
