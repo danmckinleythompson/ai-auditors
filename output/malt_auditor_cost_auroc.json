@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-10-09T22:03:59.792693+00:00",
+  "created_utc": "2026-10-14T00:01:05.265213+00:00",
   "price_date": "2026-10-02",
   "input_sha256": {
     "output/figure_data/malt_auditor_cost_usage.csv": "6aa23131b734b647a6a56024211a466f4cf73a0d60788f0332a2c9afa9770c81",
@@ -122,7 +122,7 @@
   "validation": "Aggregate token counts and all ten costs were cross-checked against the original per-request calculation. Cost and AUROC sample sizes match. The frozen per-request audit found no long-context pricing tiers.",
   "output_sha256": {
     "output/figure_data/malt_auditor_cost_auroc.csv": "9069ef8290c2f75d8f29de30fdabfec1072e1b80035798b87908524fa1799e01",
-    "output/malt_auditor_cost_auroc.pdf": "6abcd019d0fc05492bdef4249e956808cb2aba998d25d3ae9aa0c8468d8fbeda",
-    "output/malt_auditor_cost_auroc.png": "ce11c74d9b9961ece3916eab75ea0715081955e527357a9c586b5b9ff8d4ef7c"
+    "output/malt_auditor_cost_auroc.pdf": "2bf577c913555699f16b64136254abc0dd74174de18069a091c2c2ff6ad666a1",
+    "output/malt_auditor_cost_auroc.png": "350331d04f804cac6e625a61fea3f2c65de82d28587800e7d5299ffcdfa488f4"
   }
 }

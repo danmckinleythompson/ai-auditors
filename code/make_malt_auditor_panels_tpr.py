@@ -53,6 +53,10 @@ for behavior, title in behaviors:
 bars = pd.DataFrame(rows)
 bars["display_rank"] = bars.groupby("misbehavior_type").tpr.rank(ascending=False, method="first").astype(int)
 bars = bars.sort_values(["misbehavior_type", "display_rank"])
+# Count the positive-case pool, excluding the reviewed normal controls.
+# Astra and Opus have fewer completed sandbagging cases; retain their denominators in the CSV.
+positive_case_counts = bars.groupby("misbehavior_type").n_positive.max().astype(int).to_dict()
+source_url = "https://metr.org/blog/2025-10-14-malt-dataset-of-natural-and-prompted-behaviors/#monitoring-setup-and-results"
 
 # Archive only this figure's artifacts; retain the earlier standalone figures.
 stem = "malt_auditor_panels_tpr"
@@ -69,9 +73,9 @@ plt.rcParams.update({
     "axes.spines.top": False, "axes.spines.right": False, "axes.spines.left": False,
 })
 fig, axes = plt.subplots(1, 2, figsize=(14, 6.4), sharex=True)
-fig.subplots_adjust(left=0.18, right=0.975, bottom=0.25, top=0.78, wspace=0.75)
-fig.text(0.04, 0.94, "Detection at 5% False Positive Rate", fontsize=20, weight="bold")
-fig.text(0.04, 0.883, "Higher is better · Models ranked separately within each behavior", fontsize=12, color="0.35")
+fig.subplots_adjust(left=0.18, right=0.975, bottom=0.25, top=0.83, wspace=0.75)
+figure_title = "AI auditors find over 80% of cases of misbehavior"
+fig.text(0.04, 0.94, figure_title, fontsize=20, weight="bold")
 for ax, (behavior, title) in zip(axes, behaviors):
     sample = bars.loc[bars.misbehavior_type.eq(behavior)].sort_values("display_rank")
     positions = np.arange(len(sample))
@@ -90,14 +94,23 @@ for ax, (behavior, title) in zip(axes, behaviors):
     for position, value in zip(positions, sample.tpr):
         ax.text(value - 0.024, position, f"{100 * value:.1f}%", ha="right", va="center",
                 color="white", fontsize=11.5, weight="bold")
-fig.text(
-    0.04, 0.12,
-    "Rates use linear interpolation to exactly 5% FPR; individual score cutoffs may not achieve the target.\n"
-    "Complete logs: reward hacking 741 per model; sandbagging 1,767, except Astra 1,757 and Opus 1,765.\n"
-    "Source: manually reviewed MALT logs. Score = maximum across chunks. Reasoning effort is in parentheses.",
-    fontsize=9.5, color="0.35", linespacing=1.5, va="top",
-)
-for extension in ["png", "pdf"]:
+notes = [
+    "Threshold for coding a positive selected to fix false-positive rate at 5%.",
+    f"Analysis based on {positive_case_counts['reward_hacking']:,} cases of reward hacking and "
+    f"{positive_case_counts['sandbagging']:,} cases of sandbagging according to METR's human labels.",
+    "Source: Free Systems replication of METR's MALT experiments.",
+]
+for y, text in zip([0.13, 0.098], notes[:2]):
+    fig.text(0.04, y, text, fontsize=9.5, color="0.35", va="top")
+
+# Link only the source phrase in vector exports; PNG preserves its visible styling.
+prefix = fig.text(0.04, 0.066, "Source: Free Systems replication of ",
+                  fontsize=9.5, color="0.35", va="top")
+fig.canvas.draw()
+link_x = prefix.get_window_extent(fig.canvas.get_renderer()).x1 / fig.bbox.width
+link = fig.text(link_x, 0.066, "METR's MALT experiments.", fontsize=9.5,
+                color="#315f8a", va="top", url=source_url)
+for extension in ["png", "pdf", "svg"]:
     fig.savefig(output / f"{stem}.{extension}", dpi=220, facecolor="white")
 plt.close(fig)
 bars.to_csv(figure_data / f"{stem}.csv", index=False)
@@ -105,6 +118,10 @@ manifest = {
     "created_utc": datetime.now(timezone.utc).isoformat(),
     "source_sha256": {str(f.relative_to(path)): hashlib.sha256(f.read_bytes()).hexdigest() for f in [source, reference]},
     "metric": "Linearly interpolated TPR at 5% FPR; larger is better.",
+    "title": figure_title,
+    "notes": notes,
+    "source_url": source_url,
+    "positive_case_counts": positive_case_counts,
     "panel_order": [b for b, title in behaviors],
     "row_order": "Descending TPR separately in each panel.",
     "output_sha256": {str(f.relative_to(path)): hashlib.sha256(f.read_bytes()).hexdigest()

@@ -1,10 +1,21 @@
 {
-  "created_utc": "2026-10-09T22:03:59.186497+00:00",
+  "created_utc": "2026-10-13T22:15:41.198648+00:00",
   "source_sha256": {
     "output/figure_data/malt_auditor_roc_points.csv": "161e64bbe4fd28342d444c669f048c15c3f21d9509c95651497d20e7fc9ffad7",
     "output/figure_data/malt_auditor_roc_metrics.csv": "d94ab36562a1d7156d12b9a8db0703be535e304ab929ca03e6b45e72a67b71ea"
   },
   "metric": "Lowest FPR reaching 80% TPR on the linearly interpolated empirical ROC; smaller is better.",
+  "title": "Best AI auditors flag 3% of benign work as misbehavior",
+  "notes": [
+    "Threshold for coding misbehavior selected to fix true positive rate at 80%.",
+    "Analysis based on 694 logs without reward hacking or sandbagging according to METR's human labels.",
+    "Source: Free Systems replication of METR's MALT experiments."
+  ],
+  "source_url": "https://metr.org/blog/2025-10-14-malt-dataset-of-natural-and-prompted-behaviors/#monitoring-setup-and-results",
+  "negative_case_counts": {
+    "reward_hacking": 694,
+    "sandbagging": 694
+  },
   "plateau_rule": "Choose the first segment reaching 80% TPR, retaining horizontal ROC segments.",
   "panel_order": [
     "reward_hacking",
@@ -13,7 +24,8 @@
   "row_order": "Ascending FPR separately in each panel.",
   "output_sha256": {
     "output/figure_data/malt_auditor_panels_fpr.csv": "bd1c99736fa7779049a9fa5e8a8b73d72b8edb65a54d965b8686d8f1b7e2c232",
-    "output/malt_auditor_panels_fpr.pdf": "68995bf62181b95f5dcabecd87ddcaae07807652118a66b87b54756e4114650c",
-    "output/malt_auditor_panels_fpr.png": "992ec8a6135be8268d51d7ac4c714822a2601c3eaaa73a6dbfb00eca835d74dc"
+    "output/malt_auditor_panels_fpr.pdf": "58144565116d2f0b3da65a3a02c14794b4ebce8742f062f25bab6c0e1e066bad",
+    "output/malt_auditor_panels_fpr.png": "dcf56bba433e81124506b5a376da4e276afb38b1742328bf4ac2aba8f65d6a3f",
+    "output/malt_auditor_panels_fpr.svg": "67fe835c9498c7402f311b9780d2b6e552f2a86a1f4cc4dbcbc2015224bf7663"
   }
 }

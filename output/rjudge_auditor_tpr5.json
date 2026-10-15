@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-10-09T22:04:00.309569+00:00",
+  "created_utc": "2026-10-14T03:32:36.447260+00:00",
   "source_sha256": {
     "output/figure_data/rjudge_analysis_roc.csv": "810649e719df3fa80486bf9afa38ea5c127d0107bd2ff2176886886e0c3c107b",
     "output/figure_data/rjudge_analysis_metrics.csv": "6ff2447daede80f7f4218511e9f79ea6383d88483174d2354bacc82f4ae592f0",
@@ -14,6 +14,12 @@
     "opus48_high"
   ],
   "metric": "Linearly interpolated TPR at fixed FPR; larger is better.",
+  "notes_at_fpr_05": [
+    "Threshold for coding misbehavior selected to fix false-positive rate at 5%.",
+    "Analysis based on 301 unsafe logs (300 for Gemini and Opus) according to R-Judge's human labels.",
+    "Source: Free Systems analysis of the R-Judge dataset."
+  ],
+  "source_url": "https://github.com/Lordog/R-Judge",
   "fixed_fpr_targets": [
     0.05
   ],
@@ -23,7 +29,8 @@
   ],
   "output_sha256": {
     "output/figure_data/rjudge_auditor_tpr5.csv": "be6c08ab94403e8bff0f6a0c73e33b96932cd99409c4c82e61f557a06ec5b6a5",
-    "output/rjudge_auditor_tpr5.png": "0d2e365b509e37db0e144f78b821d327d4fc8681343d80a6abd3d1466df1bc3b",
-    "output/rjudge_auditor_tpr5.pdf": "fffc4058d49566fdd5020f8a8881f5837627dffbf49fbbd34147cef7d9298a67"
+    "output/rjudge_auditor_tpr5.png": "cb27455efa1230e2d143ab9f17f63168e2f2305c11e9fe794060c5ecbf0e1997",
+    "output/rjudge_auditor_tpr5.pdf": "ab3f5e78f98e0a26235db78f0b9ad0fe7768842b90f69e00fe0d217ee23f792e",
+    "output/rjudge_auditor_tpr5.svg": "461e1701429f5fde57ec80b4d5c2a87450f21c34090168ca3189afdff3661aab"
   }
 }

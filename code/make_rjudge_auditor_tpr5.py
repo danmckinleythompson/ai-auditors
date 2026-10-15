@@ -65,6 +65,9 @@ assert len(bars) == 5 and bars.tpr.between(0, 1).all()
 assert bars.n_negative.eq(270).all()
 assert bars.loc[bars.model_variant.isin(["gemini_high", "opus48_high"]), "n_positive"].eq(300).all()
 assert bars.loc[~bars.model_variant.isin(["gemini_high", "opus48_high"]), "n_positive"].eq(301).all()
+positive_case_count = int(bars.n_positive.max())
+partial_positive_count = int(bars.n_positive.min())
+source_url = "https://github.com/Lordog/R-Judge"
 
 # Cross-check every plotted value against the current document's frozen export.
 expected = pd.read_csv(expected_file).sort_values("model_variant").reset_index(drop=True)
@@ -90,9 +93,8 @@ plt.rcParams.update({
 for target, stem in targets:
     sample = bars.loc[bars.fixed_fpr.eq(target)].sort_values("display_rank")
     fig, ax = plt.subplots(figsize=(10, 6.6))
-    fig.subplots_adjust(left=0.31, right=0.97, bottom=0.24, top=0.79)
-    fig.text(0.04, 0.93, f"Detection at {target:.0%} False Positive Rate", fontsize=20, weight="bold")
-    fig.text(0.04, 0.875, "R-Judge · Higher is better · Best performer at the top", fontsize=12, color="0.35")
+    fig.subplots_adjust(left=0.31, right=0.97, bottom=0.24, top=0.85)
+    fig.text(0.04, 0.93, "Best AI auditors detect 95% of unsafe agentic behavior", fontsize=20, weight="bold")
     positions = np.arange(len(sample))
     ax.barh(positions, sample.tpr, height=0.62, color="0.3")
     ax.set_yticks(positions)
@@ -108,14 +110,20 @@ for target, stem in targets:
     for position, value in zip(positions, sample.tpr):
         ax.text(value - 0.024, position, f"{100 * value:.1f}%", ha="right", va="center",
                 color="white", fontsize=11.5, weight="bold")
-    fig.text(
-        0.04, 0.13,
-        f"Rates interpolate the empirical ROC curve to {target:.0%} FPR; a single score cutoff may not achieve this target.\n"
-        "Valid responses: 270 safe and 301 unsafe logs per model; Gemini and Opus each have 300 unsafe logs.\n"
-        "Auditor scores range from 0 to 10. Reasoning effort is shown in parentheses.",
-        fontsize=9.5, color="0.35", linespacing=1.5, va="top",
-    )
-    for extension in ["png", "pdf"]:
+    notes = [
+        "Threshold for coding misbehavior selected to fix false-positive rate at 5%.",
+        f"Analysis based on {positive_case_count:,} unsafe logs ({partial_positive_count:,} for Gemini and Opus) according to R-Judge's human labels.",
+        "Source: Free Systems analysis of the R-Judge dataset.",
+    ]
+    for y, text in zip([0.13, 0.098], notes[:2]):
+        fig.text(0.04, y, text, fontsize=9.5, color="0.35", va="top")
+    prefix = fig.text(0.04, 0.066, "Source: Free Systems analysis of the ",
+                      fontsize=9.5, color="0.35", va="top")
+    fig.canvas.draw()
+    link_x = prefix.get_window_extent(fig.canvas.get_renderer()).x1 / fig.bbox.width
+    fig.text(link_x, 0.066, "R-Judge dataset.", fontsize=9.5,
+             color="#315f8a", va="top", url=source_url)
+    for extension in ["png", "pdf", "svg"]:
         fig.savefig(output / f"{stem}.{extension}", dpi=220, facecolor="white")
     plt.close(fig)
 
@@ -127,11 +135,13 @@ manifest = {
     "sample": "individual_complete",
     "included_model_variants": sorted(models),
     "metric": "Linearly interpolated TPR at fixed FPR; larger is better.",
+    "notes_at_fpr_05": notes,
+    "source_url": source_url,
     "fixed_fpr_targets": [target for target, stem in targets],
     "row_order": "Descending TPR separately in each figure.",
     "figures": [stem for target, stem in targets],
     "output_sha256": {str(f.relative_to(path)): hashlib.sha256(f.read_bytes()).hexdigest()
-                      for f in [values_file, output / f"{family}.png", output / f"{family}.pdf"]},
+                      for f in [values_file, output / f"{family}.png", output / f"{family}.pdf", output / f"{family}.svg"]},
 }
 (output / f"{family}.json").write_text(json.dumps(manifest, indent=2) + "\n")
 print(bars[["fixed_fpr", "model_label", "tpr", "display_rank"]].to_string(index=False))

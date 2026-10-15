@@ -103,10 +103,8 @@ plt.rcParams.update({
     "axes.spines.top": False, "axes.spines.right": False,
 })
 fig, axes = plt.subplots(1, 2, figsize=(14, 7), sharex=True, sharey=True)
-fig.subplots_adjust(left=0.075, right=0.975, bottom=0.25, top=0.78, wspace=0.12)
-fig.text(0.075, 0.95, "Auditor Accuracy and API Cost", fontsize=21, weight="bold")
-fig.text(0.075, 0.897, "Price frontier: best observed AUROC available at or below each budget · October 2, 2026 prices",
-         fontsize=12, color="0.35")
+fig.subplots_adjust(left=0.075, right=0.975, bottom=0.25, top=0.84, wspace=0.12)
+fig.text(0.075, 0.95, "More expensive models do not perform noticeably better", fontsize=21, weight="bold")
 maximum = np.ceil(summary.cost_per_1000_logs_usd.max() / 200) * 200
 behaviors = [("reward_hacking", "Reward Hacking"), ("sandbagging", "Sandbagging")]
 for ax, (behavior, title) in zip(axes, behaviors):
@@ -152,10 +150,10 @@ for ax, (behavior, title) in zip(axes, behaviors):
 axes[0].set_ylabel("AUROC", labelpad=10)
 fig.text(
     0.075, 0.13,
-    "Step line = highest observed AUROC among affordable tested models; hollow points are below the frontier.\n"
-    "Observed input/output tokens (including reasoning and recorded cache use), repriced at standard OpenRouter rates.\n"
-    "Excludes retries, batch/Flex discounts, and credit-purchase fees. Complete logs: reward hacking 741; sandbagging 1,767 (Astra 1,757; Opus 1,765).\n"
-    "Sources: saved MALT classifications and token usage; OpenRouter model/endpoint catalogs retrieved October 2, 2026.",
+    "AUROC is the area under the ROC curve, a measure of predictive performance where higher means fewer false positives and fewer false negatives.\n"
+    "Step line is maximum AUROC for a given cost.\n"
+    "API cost source: estimates based on Free Systems replication of METR MALT experiments.\n"
+    "AUROC Source: Free Systems replication of METR's MALT experiments.",
     fontsize=9, color="0.35", linespacing=1.45, va="top",
 )
 for extension in ["png", "pdf"]:

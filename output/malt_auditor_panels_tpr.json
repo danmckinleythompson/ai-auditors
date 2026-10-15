@@ -1,10 +1,21 @@
 {
-  "created_utc": "2026-10-09T22:03:58.588564+00:00",
+  "created_utc": "2026-10-13T21:46:48.697184+00:00",
   "source_sha256": {
     "output/figure_data/malt_auditor_roc_points.csv": "161e64bbe4fd28342d444c669f048c15c3f21d9509c95651497d20e7fc9ffad7",
     "output/figure_data/malt_auditor_roc_metrics.csv": "d94ab36562a1d7156d12b9a8db0703be535e304ab929ca03e6b45e72a67b71ea"
   },
   "metric": "Linearly interpolated TPR at 5% FPR; larger is better.",
+  "title": "AI auditors find over 80% of cases of misbehavior",
+  "notes": [
+    "Threshold for coding a positive selected to fix false-positive rate at 5%.",
+    "Analysis based on 47 cases of reward hacking and 1,073 cases of sandbagging according to METR's human labels.",
+    "Source: Free Systems replication of METR's MALT experiments."
+  ],
+  "source_url": "https://metr.org/blog/2025-10-14-malt-dataset-of-natural-and-prompted-behaviors/#monitoring-setup-and-results",
+  "positive_case_counts": {
+    "reward_hacking": 47,
+    "sandbagging": 1073
+  },
   "panel_order": [
     "reward_hacking",
     "sandbagging"
@@ -12,7 +23,8 @@
   "row_order": "Descending TPR separately in each panel.",
   "output_sha256": {
     "output/figure_data/malt_auditor_panels_tpr.csv": "e65aec7ff06b4dba12b31aabef10fadcba8cb3d80b70b8770aacb38e72f1fec0",
-    "output/malt_auditor_panels_tpr.pdf": "7329194f96284d740d0c798452ec9acfdd52ed8b945e4c42da26a8aad4968050",
-    "output/malt_auditor_panels_tpr.png": "e6e828fe9639957f054951fd0cdc56dedbe4a412e864d6375a2af1e7a53a2e99"
+    "output/malt_auditor_panels_tpr.pdf": "44ea0f913e4e8f4aedfc3e93c191da02740f9b7b921cf38dee4efdeb33af915b",
+    "output/malt_auditor_panels_tpr.png": "11676f2ae78f42637ce45b831adf2984d853204f63733d7436e2e85de893f7a6",
+    "output/malt_auditor_panels_tpr.svg": "251f41ffa3143d44a9fc422fa25c0419e700d9cbb1b7f30fe7570c86c3b48409"
   }
 }

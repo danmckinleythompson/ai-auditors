@@ -69,6 +69,11 @@ for behavior, title in behaviors:
 bars = pd.DataFrame(rows)
 bars["display_rank"] = bars.groupby("misbehavior_type").fpr.rank(ascending=True, method="first").astype(int)
 bars = bars.sort_values(["misbehavior_type", "display_rank"])
+# Report the reviewed benign controls used to estimate each false-positive rate.
+assert bars.groupby("misbehavior_type").n_negative.nunique().eq(1).all()
+negative_case_counts = bars.groupby("misbehavior_type").n_negative.first().astype(int).to_dict()
+assert negative_case_counts["reward_hacking"] == negative_case_counts["sandbagging"]
+source_url = "https://metr.org/blog/2025-10-14-malt-dataset-of-natural-and-prompted-behaviors/#monitoring-setup-and-results"
 
 # Archive only this new figure's outputs, preserving all standalone figures.
 stem = "malt_auditor_panels_fpr"
@@ -85,9 +90,9 @@ plt.rcParams.update({
     "axes.spines.top": False, "axes.spines.right": False, "axes.spines.left": False,
 })
 fig, axes = plt.subplots(1, 2, figsize=(14, 6.4), sharex=True)
-fig.subplots_adjust(left=0.18, right=0.975, bottom=0.25, top=0.78, wspace=0.75)
-fig.text(0.04, 0.94, "False Positives at 80% Detection", fontsize=20, weight="bold")
-fig.text(0.04, 0.883, "Lower is better · Models ranked separately within each behavior", fontsize=12, color="0.35")
+fig.subplots_adjust(left=0.18, right=0.975, bottom=0.25, top=0.83, wspace=0.75)
+figure_title = "Best AI auditors flag 3% of benign work as misbehavior"
+fig.text(0.04, 0.94, figure_title, fontsize=20, weight="bold")
 for ax, (behavior, title) in zip(axes, behaviors):
     sample = bars.loc[bars.misbehavior_type.eq(behavior)].sort_values("display_rank")
     positions = np.arange(len(sample))
@@ -107,14 +112,22 @@ for ax, (behavior, title) in zip(axes, behaviors):
     for position, value in zip(positions, sample.fpr):
         ax.text(value + 0.016, position, f"{100 * value:.1f}%", ha="left", va="center",
                 color="0.2", fontsize=11.5, weight="bold")
-fig.text(
-    0.04, 0.12,
-    "Rates use linear interpolation to exactly 80% TPR; individual score cutoffs may not achieve the target.\n"
-    "Complete logs: reward hacking 741 per model; sandbagging 1,767, except Astra 1,757 and Opus 1,765.\n"
-    "Source: manually reviewed MALT logs. Score = maximum across chunks. Reasoning effort is in parentheses.",
-    fontsize=9.5, color="0.35", linespacing=1.5, va="top",
-)
-for extension in ["png", "pdf"]:
+notes = [
+    "Threshold for coding misbehavior selected to fix true positive rate at 80%.",
+    f"Analysis based on {negative_case_counts['reward_hacking']:,} logs without reward hacking or sandbagging according to METR's human labels.",
+    "Source: Free Systems replication of METR's MALT experiments.",
+]
+for y, text in zip([0.13, 0.098], notes[:2]):
+    fig.text(0.04, y, text, fontsize=9.5, color="0.35", va="top")
+
+# Link the source in vector exports; PNG preserves its visible styling.
+prefix = fig.text(0.04, 0.066, "Source: Free Systems replication of ",
+                  fontsize=9.5, color="0.35", va="top")
+fig.canvas.draw()
+link_x = prefix.get_window_extent(fig.canvas.get_renderer()).x1 / fig.bbox.width
+fig.text(link_x, 0.066, "METR's MALT experiments.", fontsize=9.5,
+         color="#315f8a", va="top", url=source_url)
+for extension in ["png", "pdf", "svg"]:
     fig.savefig(output / f"{stem}.{extension}", dpi=220, facecolor="white")
 plt.close(fig)
 bars.to_csv(figure_data / f"{stem}.csv", index=False)
@@ -122,6 +135,10 @@ manifest = {
     "created_utc": datetime.now(timezone.utc).isoformat(),
     "source_sha256": {str(f.relative_to(path)): hashlib.sha256(f.read_bytes()).hexdigest() for f in [source, reference]},
     "metric": "Lowest FPR reaching 80% TPR on the linearly interpolated empirical ROC; smaller is better.",
+    "title": figure_title,
+    "notes": notes,
+    "source_url": source_url,
+    "negative_case_counts": negative_case_counts,
     "plateau_rule": "Choose the first segment reaching 80% TPR, retaining horizontal ROC segments.",
     "panel_order": [b for b, title in behaviors],
     "row_order": "Ascending FPR separately in each panel.",

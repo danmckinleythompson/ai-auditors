@@ -70,6 +70,9 @@ bars["display_rank"] = bars.groupby("fixed_tpr").fpr.rank(ascending=True, method
 bars = bars.sort_values(["fixed_tpr", "display_rank"])
 assert len(bars) == 10 and not bars.duplicated(["model_variant", "fixed_tpr"]).any()
 assert set(bars.fixed_tpr) == {0.95, 0.99}
+assert bars.n_negative.nunique() == 1
+negative_case_count = int(bars.n_negative.iloc[0])
+source_url = "https://github.com/Lordog/R-Judge"
 
 # Verify all numerical columns against the current document's plotted values.
 keys = ["fixed_tpr", "model_variant"]
@@ -95,8 +98,9 @@ plt.rcParams.update({
 })
 fig, axes = plt.subplots(1, 2, figsize=(14.8, 6.6), sharex=True)
 fig.subplots_adjust(left=0.18, right=0.975, bottom=0.25, top=0.77, wspace=0.78)
-fig.text(0.04, 0.94, "False Alarms When Catching Almost All Unsafe Behavior", fontsize=20, weight="bold")
-fig.text(0.04, 0.883, "R-Judge · Lower is better · Models ranked separately in each panel", fontsize=12, color="0.35")
+fig.text(0.04, 0.95, "To catch 99% of unsafe behavior, you have to\n"
+         "incorrectly flag 15% of safe behavior as unsafe",
+         fontsize=20, weight="bold", va="top", linespacing=1.1)
 for ax, target in zip(axes, [0.95, 0.99]):
     sample = bars.loc[bars.fixed_tpr.eq(target)].sort_values("display_rank")
     assert np.all(np.diff(sample.fpr) >= 0)
@@ -116,14 +120,20 @@ for ax, target in zip(axes, [0.95, 0.99]):
     for position, value in zip(positions, sample.fpr):
         ax.text(value + 0.016, position, f"{100 * value:.1f}%", ha="left", va="center",
                 color="0.2", fontsize=11.5, weight="bold")
-fig.text(
-    0.04, 0.12,
-    "Rates are linearly interpolated; a single score cutoff may not achieve the target.\n"
-    "270 safe records; 301 unsafe, except Gemini and Opus: 300. Missing scores are excluded.\n"
-    "Scores range from 0 to 10; reasoning effort is in parentheses.",
-    fontsize=9.5, color="0.35", linespacing=1.5, va="top",
-)
-for extension in ["png", "pdf"]:
+notes = [
+    "Threshold for coding misbehavior selected to fix true positive rate at 95% or 99%.",
+    f"Analysis based on {negative_case_count:,} safe logs according to R-Judge's human labels.",
+    "Source: Free Systems analysis of the R-Judge dataset.",
+]
+for y, text in zip([0.13, 0.098], notes[:2]):
+    fig.text(0.04, y, text, fontsize=9.5, color="0.35", va="top")
+prefix = fig.text(0.04, 0.066, "Source: Free Systems analysis of the ",
+                  fontsize=9.5, color="0.35", va="top")
+fig.canvas.draw()
+link_x = prefix.get_window_extent(fig.canvas.get_renderer()).x1 / fig.bbox.width
+fig.text(link_x, 0.066, "R-Judge dataset.", fontsize=9.5,
+         color="#315f8a", va="top", url=source_url)
+for extension in ["png", "pdf", "svg"]:
     fig.savefig(output / f"{stem}.{extension}", dpi=220, facecolor="white")
 plt.close(fig)
 bars.to_csv(values_file, index=False)
@@ -131,11 +141,13 @@ manifest = {
     "created_utc": datetime.now(timezone.utc).isoformat(),
     "source_sha256": {str(f.relative_to(path)): hashlib.sha256(f.read_bytes()).hexdigest() for f in [source, expected_file]},
     "metric": "Lowest FPR reaching the target TPR on the linearly interpolated empirical ROC; smaller is better.",
+    "notes": notes,
+    "source_url": source_url,
     "sample": "individual_complete: all valid scores for each model separately; no imputation of missing scores.",
     "panel_order": [0.95, 0.99], "included_models": sorted(models),
     "row_order": "Ascending FPR separately in each panel.",
     "output_sha256": {str(f.relative_to(path)): hashlib.sha256(f.read_bytes()).hexdigest()
-                      for f in [values_file, output / f"{stem}.png", output / f"{stem}.pdf"]},
+                      for f in [values_file, output / f"{stem}.png", output / f"{stem}.pdf", output / f"{stem}.svg"]},
 }
 (output / f"{stem}.json").write_text(json.dumps(manifest, indent=2) + "\n")
 print(bars[["fixed_tpr", "model_label", "fpr"]].to_string(index=False))
